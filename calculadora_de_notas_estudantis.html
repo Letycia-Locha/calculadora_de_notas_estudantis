@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos com Média</title>
+    <script>
+        function cadastrarAlunos() {
+            // Solicita o número de alunos
+            const numeroDeAlunos = Number(prompt("Quantos alunos você deseja inserir?"));
+            const listaDeAlunos = []; // Array para armazenar os dados dos alunos
+
+            // Loop para coletar os dados de cada aluno
+            for (let i = 0; i < numeroDeAlunos; i++) {
+                // Define a variável 'nome' aqui para garantir que está inicializada antes de ser usada
+                const nome = prompt("Nome do aluno " + (i + 1) + ":");
+                
+                // Coleta as notas do aluno
+                let contador = 1; 
+                const qtd = Number(prompt('Quantas notas para ' + nome + '?'));
+                let soma = 0; 
+                let nota = 0; 
+
+                // Loop para coletar as notas do aluno
+                while (contador <= qtd) {
+                    do {
+                        // Solicita a nota e garante que é um número
+                        nota = Number(prompt('Digite a nota ' + contador + ' para ' + nome + ':'));
+                    } while (nota < 0 || nota > 10); // Verifica se a nota está entre 0 e 10
+
+                    soma += nota; // Soma as notas
+                    contador++; // Incrementa o contador
+                }
+
+                // Calcula a média das notas
+                const media = soma / qtd; 
+                
+                // Determina se o aluno foi aprovado ou reprovado com base na média
+                const resultado = media >= 7 ? 'Aprovado' : 'Reprovado'; 
+                
+                // Cria uma string formatada com os dados do aluno e a média
+                const alunoInfo = `O aluno ${nome} tem a média ${media.toFixed(2)} e está ${resultado}.`;
+                
+                // Adiciona a string ao array de alunos
+                listaDeAlunos.push(alunoInfo);
+            }
+
+            // Exibe todos os dados dos alunos no console
+            console.log("Lista de Alunos:");
+            listaDeAlunos.forEach(aluno => console.log(aluno));
+        }
+
+        // Chama a função ao carregar a página para iniciar o cadastro de alunos
+        window.onload = cadastrarAlunos;
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
